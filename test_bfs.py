@@ -138,3 +138,43 @@ class TestBfS(unittest.TestCase):
         }
         result = bfs(graph, 10)
         self.assertEqual(len(result), 4)  # Should not include node 99
+    
+    def test_start_node_with_no_neighbors(self):
+        graph = {
+            1: [],
+            2: [3],
+            3: [2]
+        }
+        result = bfs(graph, 1)
+        self.assertEqual(result, [1])  # Should not visit any other node
+
+    def test_sparse_node_ids(self):
+        graph = {
+            100: [200],
+            200: [100, 300],
+            300: [200]
+        }
+        result = bfs(graph, 100)
+        self.assertEqual(result, [100, 200, 300])
+
+    def test_already_sorted_neighbors(self):
+        graph = {
+            1: [2, 3, 4],
+            2: [1],
+            3: [1],
+            4: [1]
+        }
+        result = bfs(graph, 1)
+        self.assertEqual(result, [1, 2, 3, 4])
+    
+    def test_duplicate_edges(self):
+        """
+        Ensures duplicate edges are handled gracefully without revisits.
+        """
+        graph = {
+            1: [2, 2],
+            2: [1, 1]
+        }
+        result = bfs(graph, 1)
+        self.assertEqual(result, [1, 2])
+
