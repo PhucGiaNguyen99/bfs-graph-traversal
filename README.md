@@ -15,11 +15,17 @@ Designed for large graphs and tested for command-line execution on Unix-based en
 - Supports large-scale graphs and command-line execution
 - Includes complete unit tests using `unittest`
 
-## 📦 Requirements
+## Requirements
 
 - Python 3.6 or higher
 - Works on Linux, macOS, Windows, and Zeus
 
+## Target of unit tests for BFS
+1. Traversing the graph correctly from a given start node
+2. Visiting each node exactly once (no duplicates)
+3. Respecting adjacency list structure (undirected edges)
+4. Using sorted() on neighbors (for consistent traversal order)
+5. Returning the correct list of visited nodes in BFS order
 
 . Implement the functions:
 - read_graph(file_name)
